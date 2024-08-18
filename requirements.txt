@@ -1,0 +1,7 @@
+langchain-community
+langchain
+langchain-core 
+langchain-upstage
+python-dotenv
+streamlit
+predibase
