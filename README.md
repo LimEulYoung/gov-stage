@@ -1,19 +1,18 @@
-## 0. 개요
- - 기업이 LLM을 안전하게 활용할 수 있도록 지원하는 개인정보 식별 및 재식별 시스템입니다.
- - 로컬에 설치된 전용 sLLM을 이용하여 식별 및 재식별 작업을 수행한 후, 외부의 LLM에 질의함으로써 외부 위협으로부터 개인정보를 안전하게 보호합니다.
- - 외부의 LLM은 파인튜닝된 Solar 모델을 사용하여 자연스럽고 매끄러운 대화를 지원합니다.
+## 0. Overview
+- This system supports enterprises in safely utilizing LLM by providing a personal data identification and re-identification system.
+- It uses a dedicated Private LLM installed locally to perform identification and re-identification tasks, and queries an external LLM to ensure the personal data remains secure from external threats.
 
-## 1. 패키지 다운로드
- - 필수 패키지를 설치하려면 다음 명령어를 실행하세요:  
-   ```
-   pip install -r requirements.txt
-   ```
+## 1. Package Installation
+- To install the required packages, run the following command:
+  ```
+  pip install -r requirements.txt
+  ```
 
-## 2. 실행 방법
- - `main.py` 파일이 있는 위치에서 다음 명령어를 실행하여 애플리케이션을 시작합니다:  
-   ```
-   streamlit run main.py
-   ```
+## 2. How to Run
+- To start the application, navigate to the directory where the `main.py` file is located and run the following command:
+  ```
+  streamlit run main.py
+  ```
 
-## 3. 예시 화면(왼쪽이 사용자에게 보이는 화면, 오른쪽이 외부의 LLM이 전달받는 데이터)
-![Untitled](https://github.com/user-attachments/assets/ec3bf894-5969-413f-94ab-e23b5bbec480)
+## 3. Sample Screen (left: user interface, right: data sent to the external LLM)
+![image](https://github.com/user-attachments/assets/761b08c5-6398-499a-9f01-e674a42fbaae)
