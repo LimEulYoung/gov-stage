@@ -268,6 +268,7 @@ with st.sidebar:
 
 @st.cache_resource
 def load_model():
+    # The following code calls the Solar Mini API, which is used to determine the name of the chat session.
     load_dotenv(verbose=True)
     model = ChatUpstage()
     print("solar-1-mini-chat loaded...")
@@ -275,6 +276,7 @@ def load_model():
 
 @st.cache_resource
 def load_model2():
+    # The following code is a function that calls a fine-tuned Solar Mini model. It detects personal information in the user prompt and performs decryption if necessary.
     pb= Predibase(api_token=os.environ['PREDIBASE_API_KEY'])
     print("Predibase loaded...")
     return pb.deployments.client("solar-1-mini-chat-240612")
@@ -366,7 +368,7 @@ with col1:
             placeholder.empty()
             col1_1.markdown("<h5 style='text-align: center; color: black;'>User Interface</h5>", unsafe_allow_html=True)
             col1_2.markdown("<h5 style='text-align: center; color: black;'>Internal Processing</h5>", unsafe_allow_html=True)
-            st.session_state.subject = solar.invoke(f"'{prompt}'에 대한 3단어 이하의 간결한 제목을 제안해 주세요.").content.strip('"')
+            st.session_state.subject = solar.invoke(f"'{prompt}'에 대한 3단어 이하의 간결한 제목을 제안해 주세요.").content.strip('"') # Determine the title of the chat session using the Solar Mini API
         with col1_1:
             with st.chat_message("Human"):
                 st.markdown(prompt)
@@ -374,6 +376,7 @@ with col1:
         chat_history = "\n".join([f"{role}: {message}" for role, message in st.session_state.chat_history[-5:]])
         with col1_2: 
             with st.spinner("De-identification in progress...."): 
+                # Detect personal information in the prompt and perform de-identification.
                 if(mode_on):
                     anonymized_chat_history = lorax_client.generate(anonymization_prompt_template.format(**{"original_sentences": chat_history, "List_of_PII" : selected_fields}), adapter_id='solar anonymization/22', max_new_tokens=1000).generated_text
                 else:
@@ -389,6 +392,7 @@ with col1:
                 with col1_2:
                     with st.spinner("Generating response...."):
                         if model_type == "solar-1-mini(fine_tuned)":
+                            # Query the Solar Mini, which has been trained on guidelines from a public institution (KDI School).
                             anonymized_response = lorax_client.generate(conversation_prompt_template.format(**{"system_prompt":system_prompt ,"anonymized_chat_history":anonymized_chat_history}), adapter_id='solar kdis/14', max_new_tokens=1000).generated_text
                         elif model_type == "gpt-4o-mini":
                             anonymized_response = gpt4o.invoke(conversation_prompt_template.format(**{"system_prompt":system_prompt ,"anonymized_chat_history":anonymized_chat_history})).content
@@ -399,6 +403,7 @@ with col1:
             with st.spinner("Re-identification in progress...."): 
                 with col1_2:
                     with st.spinner("Re-identification in progress...."):
+                        # Restore personal information from the response of a public LLM.
                         if(mode_on):
                             restored_response = lorax_client.generate(restoration_prompt_template.format(**{"original_conversaion_sentence": chat_history, "anonymized_conversation_history": anonymized_chat_history, "sentence_to_be_restored": anonymized_response}), adapter_id='solar anonymization/22', max_new_tokens=1000).generated_text
                         else:
