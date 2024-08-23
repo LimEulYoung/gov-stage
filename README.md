@@ -5,8 +5,8 @@ Gov-STAGE is a powerful system designed to help enterprises and public instituti
 
 Key Features:
 - **Private LLM Integration**: A dedicated, fine-tuned Private LLM, based on the Solar Mini model, is deployed locally to handle the detection and anonymization of personal information.
-- **Secure External LLM Queries**: Once the data is anonymized, it is safely transmitted to external LLMs like ChatGPT or Claude, ensuring the sensitive information is never compromised.
-- **Re-identification and Data Restoration**: If necessary, responses from external LLMs can be re-identified using the internal Private LLM within the organization, making the process seamless and secure.
+- **Secure Public LLM Queries**: Once the data is anonymized, it is safely transmitted to Public LLMs like ChatGPT or Claude, ensuring the sensitive information is never compromised.
+- **Re-identification and Data Restoration**: If necessary, responses from Public LLMs can be re-identified using the internal Private LLM within the organization, making the process seamless and secure.
 
 Gov-STAGE enables public institutions and enterprises to embrace advanced AI technologies without compromising on data privacy and compliance with global data protection regulations such as GDPR and local privacy laws.
 
@@ -27,12 +27,12 @@ streamlit run main.py
 ```
 
 ## 4. Sample Screen
-Below is a sample screen of Gov-STAGE in action (left: user interface, right: data sent to the external LLM):
+Below is a sample screen of Gov-STAGE in action (left: user interface, right: data sent to the Public LLM):
 
 ![image](https://github.com/user-attachments/assets/cbfaa178-eeea-4817-8f06-a6032838cda9)
 
 In this example:
-- Personal information such as names, addresses, and dates are automatically anonymized before being sent to an external LLM.
+- Personal information such as names, addresses, and dates are automatically anonymized before being sent to an Public LLM.
 - The right-side menu shows the customizable list of personal data types that can be anonymized based on your requirements.
 - Once the response is generated, re-identification is applied where needed, restoring the necessary information while keeping other data anonymized.
 
