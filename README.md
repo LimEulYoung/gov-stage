@@ -40,6 +40,7 @@ In this example:
 Experience a live demo of Gov-STAGE at [https://gov-stage.com](https://gov-stage.com).
 
 ## 6. Demo Video
+Watch our demo video by clicking the image below, which will take you to YouTube.
 [![Gov-STAGE Demo Video](https://img.youtube.com/vi/OlQq6_1hXUo/maxresdefault.jpg)](https://youtu.be/OlQq6_1hXUo)
 
 ## 7. Future Plan
