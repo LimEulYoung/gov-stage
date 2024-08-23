@@ -44,10 +44,11 @@ Watch our demo video by clicking the image below, which will take you to YouTube
 [![Gov-STAGE Demo Video](https://img.youtube.com/vi/OlQq6_1hXUo/maxresdefault.jpg)](https://youtu.be/OlQq6_1hXUo)
 
 ## 7. Future Plan
-Gov-STAGE is continuously evolving to meet the growing needs of public institutions and enterprises. Our upcoming features and improvements include:
-- **Expanded Regulatory Compliance**: Supporting major global regulations like GDPR, CPRA, and Local Privacy laws with over 50 types of personal information for de-identification.
-- **Multi-language Support**: Currently supporting 10+ languages with plans for continuous expansion.
-- **AI Ethics Integration**: Embedding AI ethics principles tailored to the organization’s unique requirements, ensuring ethical and responsible AI usage.
-- **Enterprise-grade Safety**: Built on proven chatbot technology, ensuring robust security and reliability for large-scale enterprise deployments.
+Gov-STAGE is continuously evolving to meet the growing needs of public institutions and enterprises. Our roadmap includes the following future features and improvements:
+- **Expanded Regulatory Compliance**: We plan to support major global regulations like GDPR, CPRA, and Local Privacy laws, with the capability to de-identify over 50 types of personal information.
+- **Multi-language Support**: Currently, we support one language, with plans to expand support to 10+ languages in the future.
+- **AI Ethics Integration**: Future updates will embed AI ethics principles tailored to the organization’s unique requirements, ensuring ethical and responsible AI usage.
+- **Enterprise-grade Safety**: Built on proven chatbot technology, future updates will enhance security and reliability for large-scale enterprise deployments.
+These planned features reflect our commitment to continuously improving Gov-STAGE to better serve public institutions and enterprises while ensuring robust data protection and compliance.
 
 By adopting Gov-STAGE, organizations can securely leverage LLM capabilities while staying compliant and protecting sensitive information.
