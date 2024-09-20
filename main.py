@@ -128,53 +128,131 @@ with col2:
         with st.expander("General Personal Information"):
             name = st.checkbox("Name", value=True)
             age = st.checkbox("Age", value=True)
-            gender = st.checkbox("Gender", value=True)
             phone_number = st.checkbox("Phone Number", value=True)
-            birthdate = st.checkbox("Date of Birth", value=True)
-            address = st.checkbox("Address", value=True)
-            card_number = st.checkbox("Card Number", value=True)
+            date_of_birth = st.checkbox("Date of Birth", value=True)
             email = st.checkbox("Email", value=True)
-            ip_address = st.checkbox("IP Address", value=True)
-            password = st.checkbox("Password", value=True)
-            date = st.checkbox("Date", value=True)
-            birth_place = st.checkbox("Place of Birth")
-            permanent_address = st.checkbox("Permanent Address")
-            nationality = st.checkbox("Nationality")
-
-        with st.expander("Unique Identifiable Information"):
+            nationality = st.checkbox("Nationality", value=True)
+            state = st.checkbox("State", value=True)
+            city = st.checkbox("City", value=True)
+            district = st.checkbox("District", value=True)
+            zip_code = st.checkbox("ZIP Code", value=True)
+            detailed_address = st.checkbox("Detailed Address", value=True)
+            road_name_address = st.checkbox("Road Name Address", value=True)
+            gender = st.checkbox("Gender", value=True)
+            job = st.checkbox("JOB", value=True)
             resident_registration_number = st.checkbox("Resident Registration Number", value=True)
-            foreigner_registration_number = st.checkbox("Foreigner Registration Number", value=True)
-            driver_license_number = st.checkbox("Driver's License Number", value=True)
             passport_number = st.checkbox("Passport Number", value=True)
-
+            alien_registration_number = st.checkbox("Alien Resistration Number", value=True)
+            driver_license = st.checkbox("Driver License", value=True)
+        with st.expander("Health information"):
+            condition = st.checkbox("Condition(To-Be)", value=False, disabled=True)
+            physical_disability = st.checkbox("Physical Disablility(To-Be)", value=False, disabled=True)
+            disability_level = st.checkbox("Disability Level(To-Be)", value=False, disabled=True)
+            blood_type = st.checkbox("Blood Type", value=True)
+            iq = st.checkbox("IQ", value=True)
+            drug = st.checkbox("Drug(To-Be)", value=False, disabled=True)
+        with st.expander("Credit Information"):
+            account_number = st.checkbox("Account Number", value=True)
+            money = st.checkbox("Money", value=True)
+            order_number = st.checkbox("Order Number", value=True)
+            credit_rating = st.checkbox("Credit Rating(To-Be)", value=False, disabled=True)
+            cvv = st.checkbox("CVV(To-Be)", value=False, disabled=True)
+            credit_card_expiration = st.checkbox("Credit Card Expiration(To-Be)", value=False, disabled=True)
+            bank = st.checkbox("Bank", value=True)
+        with st.expander("Social Information"):
+            gpa = st.checkbox("GPA", value=True)
+            technical_certification = st.checkbox("Technical Certification(To-Be)", value=False, disabled=True)
+            student_number = st.checkbox("Student Number", value=True)
+            school_name = st.checkbox("School Name", value=True)
+            military_service_status = st.checkbox("Military Service Status(To-Be)", value=False, disabled=True)
+            army_number = st.checkbox("Army Number", value=True)
+            military_rank = st.checkbox("Military Rank(To-Be)", value=False, disabled=True)
+            types_of_military_discharge = st.checkbox("Types of Military Discharge(To-Be)", value=False, disabled=True)
+            organization = st.checkbox("Organization", value=True)
+            employment_type = st.checkbox("Employment Type", value=True)
+            work_experience = st.checkbox("Work Experience(To-Be)", value=False, disabled=True)
+            employee_number = st.checkbox("Employee Number", value=True)
+            criminal_record = st.checkbox("Criminal Record(To-Be)", value=False, disabled=True)
+        with st.expander("Confidential Information"):
+            source_code = st.checkbox("Source Code(To-Be)", value=False, disabled=True)
+            statistics = st.checkbox("Statistics", value=True)
+            crisis_alert_response = st.checkbox("Crisis Alert Response(To-Be)", value=False, disabled=True)
+        with st.expander("Others"):
+            password = st.checkbox("Password", value=True)
+            ip_address = st.checkbox("IP Address", value=True)
+            mac = st.checkbox("MAC", value=True)
+            url = st.checkbox("URL", value=True)
+            date = st.checkbox("Date", value=True)
+            date_interval = st.checkbox("Date Interval", value=True)
+            duration = st.checkbox("Duration", value=True)
+            time = st.checkbox("Time", value=True)
     else:
         with st.expander("General Personal Information"):
             name = st.checkbox("Name", value=True, disabled=True)
             age = st.checkbox("Age", value=True, disabled=True)
-            gender = st.checkbox("Gender", value=True, disabled=True)
             phone_number = st.checkbox("Phone Number", value=True, disabled=True)
-            birthdate = st.checkbox("Date of Birth", value=True, disabled=True)
-            address = st.checkbox("Address", value=True, disabled=True)
-            card_number = st.checkbox("Card Number", value=True, disabled=True)
+            date_of_birth = st.checkbox("Date of Birth", value=True, disabled=True)
             email = st.checkbox("Email", value=True, disabled=True)
-            ip_address = st.checkbox("IP Address", value=True, disabled=True)
+            nationality = st.checkbox("Nationality", value=True, disabled=True)
+            state = st.checkbox("State", value=True, disabled=True)
+            city = st.checkbox("City", value=True, disabled=True)
+            district = st.checkbox("District", value=True, disabled=True)
+            zip_code = st.checkbox("ZIP Code", value=True, disabled=True)
+            detailed_address = st.checkbox("Detailed Address", value=True, disabled=True)
+            road_name_address = st.checkbox("Road Name Address", value=True, disabled=True)
+            gender = st.checkbox("Gender", value=True, disabled=True)
+            job = st.checkbox("JOB", value=True, disabled=True)
+            resident_registration_number = st.checkbox("Resident Registration Number", value=True, disabled=True)
+            passport_number = st.checkbox("Passport Number", value=True, disabled=True)
+            alien_registration_number = st.checkbox("Alien Resistration Number", value=True, disabled=True)
+            driver_license = st.checkbox("Driver License", value=True, disabled=True)
+        with st.expander("Health information"):
+            condition = st.checkbox("Condition(To-Be)", value=False, disabled=True)
+            physical_disability = st.checkbox("Physical Disablility(To-Be)", value=False, disabled=True)
+            disability_level = st.checkbox("Disability Level(To-Be)", value=False, disabled=True)
+            blood_type = st.checkbox("Blood Type", value=True, disabled=True)
+            iq = st.checkbox("IQ", value=True, disabled=True)
+            drug = st.checkbox("Drug(To-Be)", value=False, disabled=True)
+        with st.expander("Credit Information"):
+            account_number = st.checkbox("Account Number", value=True, disabled=True)
+            money = st.checkbox("Money", value=True, disabled=True)
+            order_number = st.checkbox("Order Number", value=True, disabled=True)
+            credit_rating = st.checkbox("Credit Rating(To-Be)", value=False, disabled=True)
+            cvv = st.checkbox("CVV(To-Be)", value=False, disabled=True)
+            credit_card_expiration = st.checkbox("Credit Card Expiration(To-Be)", value=False, disabled=True)
+            bank = st.checkbox("Bank", value=True, disabled=True)
+        with st.expander("Social Information"):
+            gpa = st.checkbox("GPA", value=True, disabled=True)
+            technical_certification = st.checkbox("Technical Certification(To-Be)", value=False, disabled=True)
+            student_number = st.checkbox("Student Number", value=True, disabled=True)
+            school_name = st.checkbox("School Name", value=True, disabled=True)
+            military_service_status = st.checkbox("Military Service Status(To-Be)", value=False, disabled=True)
+            army_number = st.checkbox("Army Number", value=True, disabled=True)
+            military_rank = st.checkbox("Military Rank(To-Be)", value=False, disabled=True)
+            types_of_military_discharge = st.checkbox("Types of Military Discharge(To-Be)", value=False, disabled=True)
+            organization = st.checkbox("Organization", value=True, disabled=True)
+            employment_type = st.checkbox("Employment Type", value=True, disabled=True)
+            work_experience = st.checkbox("Work Experience(To-Be)", value=False, disabled=True)
+            employee_number = st.checkbox("Employee Number", value=True, disabled=True)
+            criminal_record = st.checkbox("Criminal Record(To-Be)", value=False, disabled=True)
+        with st.expander("Confidential Information"):
+            source_code = st.checkbox("Source Code(To-Be)", value=False, disabled=True)
+            statistics = st.checkbox("Statistics", value=True, disabled=True)
+            crisis_alert_response = st.checkbox("Crisis Alert Response(To-Be)", value=False, disabled=True)
+        with st.expander("Others"):
             password = st.checkbox("Password", value=True, disabled=True)
+            ip_address = st.checkbox("IP Address", value=True, disabled=True)
+            mac = st.checkbox("MAC", value=True, disabled=True)
+            url = st.checkbox("URL", value=True, disabled=True)
             date = st.checkbox("Date", value=True, disabled=True)
-            birth_place = st.checkbox("Place of Birth")
-            permanent_address =st.checkbox("Permanent Address")
-            nationality =st.checkbox("Nationality")
-        with st.expander("Unique Identifiable Information"):
-            resident_registration_number =  st.checkbox("Resident Registration Number", value=True, disabled=True)
-            foreigner_registration_number =  st.checkbox("Foreigner Registration Number", value=True, disabled=True)
-            driver_license_number =  st.checkbox("Driver's License Number", value=True, disabled=True)
-            passport_number =  st.checkbox("Passport Number", value=True, disabled=True)
+            date_interval = st.checkbox("Date Interval", value=True, disabled=True)
+            duration = st.checkbox("Duration", value=True, disabled=True)
+            time = st.checkbox("Time", value=True, disabled=True)
+
     st.divider()
     st.markdown("##### Role")
-    system_prompt = st.text_area("system prompt",value="You are an office assistant at Jeju Special Self-Governing Province Development Co., responsible for promptly and accurately answering work-related questions from staff. Respond in a friendly and easy-to-understand language, while maintaining the professionalism and credibility of a public institution.")
+    system_prompt = st.text_area("system prompt",value="You are an office assistant, responsible for promptly and accurately answering work-related questions from staff. Respond in a friendly and easy-to-understand language, while maintaining the professionalism and credibility of a public institution.")
     model_type = st.selectbox("model type",("gpt-4o", "llama3.1-405b", "solar-1-mini(fine_tuned)"),)
-    st.divider()
-    st.markdown("##### Jeju island🌊🌴")
-    st.audio("music.mp3", format="audio/mpeg", loop=True)
 
 def newChatButton():
     del st.session_state['session_id']
@@ -268,7 +346,6 @@ with st.sidebar:
 
 @st.cache_resource
 def load_model():
-    # The following code calls the Solar Mini API, which is used to determine the name of the chat session.
     load_dotenv(verbose=True)
     model = ChatUpstage()
     print("solar-1-mini-chat loaded...")
@@ -276,7 +353,6 @@ def load_model():
 
 @st.cache_resource
 def load_model2():
-    # The following code is a function that calls a fine-tuned Solar Mini model. It detects personal information in the user prompt and performs decryption if necessary.
     pb= Predibase(api_token=os.environ['PREDIBASE_API_KEY'])
     print("Predibase loaded...")
     return pb.deployments.client("solar-1-mini-chat-240612")
@@ -293,9 +369,6 @@ def load_model4():
     print("llama3.1-405b loaded...")
     return model
 
-
-
-
 solar = load_model()
 lorax_client = load_model2()
 gpt4o = load_model3()
@@ -309,23 +382,22 @@ conversation_prompt_template = """
 <|im_start|>Conversation\n {anonymized_chat_history}<|im_end|>
 <|im_start|>AI:"""
 
-anonymization_prompt_template = """<|im_start|>system\n You are a personal data anonymization system. Anonymize the personal information in the sentences provided below as instructed. However, do not anonymize the personal information of public figures (e.g., celebrities, politicians, athletes).
+anonymization_prompt_template = """<|im_start|>system
+You are a personal data anonymization system. Your task is to anonymize personal information in the sentences provided, following the instructions below. However, do not anonymize the personal information of public figures (e.g., celebrities, politicians, athletes).
 
 Anonymization Rules:
-1. Personal information to be anonymized: {List_of_PII}
-2. Do not anonymize any information other than the personal information listed above.
-3. Exceptions to anonymization:
-   - Information about public figures (politicians, celebrities, athletes) and individuals who have been deceased for more than 5 years.
-4. Examples of anonymization(Use placeholder):
-   - Name: [NAME], [NAME2]
-   - Age: [AGE]
-   - Gender: [GENDER]
-   - Date of Birth: [DOB], [DOB2]
-5. Conversation format: Each turn of the anonymized conversation must be prefixed with 'Human:' and 'AI:'.
+1. Use the following placeholders for anonymization: {List_of_PII}.
+2. If a placeholder is not applicable or relevant, retain the original information.
+3. Exceptions to anonymization: Do not anonymize information about public figures (politicians, celebrities, athletes) or individuals who have been deceased for more than 5 years.
+4. Format: Each exchange in the anonymized conversation should begin with 'Human:' or 'AI:' to indicate the speaker.
 
-Original sentences: <|im_end|>\n<|im_start|>user\n 
-{original_sentences}\n
-Anonymized sentences (without additional comments or responses):<|im_end|>\n<|im_start|>assistant\n
+Original sentences: <|im_end|>
+<|im_start|>user
+
+{original_sentences}
+
+Anonymized sentences (without additional comments or responses):<|im_end|>
+<|im_start|>assistant
 """
 
 restoration_prompt_template  = """<|im_start|>system\nYou are a personal data restoration system.
@@ -343,24 +415,53 @@ Sentence to be restored:
 
 Restored sentence(without any additional comments or responses):<|im_end|>\n<|im_start|>assistant\n"""
 
-selected_fields = [
+
+first_selected_fields = true_list = [var_name for var_name, var_value in [('[ACCOUNT_NUMBER]', account_number), ('[EMAIL]', email), ('[RESIDENT_REGISTRATION_NUMBER]', resident_registration_number), ('[PASSPORT_NUMBER]', passport_number), ('[ALIEN_REGISTRATION_NUMBER]', alien_registration_number), ('[DRIVER_LICENSE]', driver_license), ('[ARMY_NUMBER]', army_number), ('[IP_ADDRESS]', ip_address), ('[MAC]', mac), ('[URL]', url), ('[PHONE_NUMBER]', phone_number)] if var_value]
+
+
+def pattern_matching_filter(label, target_sentense):
+    if label == '[PHONE_NUMBER]':
+        regex = r'(?<![1-9])(?:02|031|032|033|041|042|043|044|051|052|053|054|055|061|062|063|067)\d{7,8}(?![1-9])|(?<![1-9])010\d{8}(?![1-9])|(?<![1-9])(?:02|031|032|033|041|042|043|044|051|052|053|054|055|061|062|063|067)[\s-]\d{3,4}[\s-]\d{4}(?![1-9])|(?<![1-9])010[\s-]\d{4}[\s-]\d{4}(?![1-9])'
+    elif label == '[EMAIL]':
+        regex = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+    elif label == '[RESIDENT_REGISTRATION_NUMBER]':
+        regex = r'\d\d[01][0-9][0-3][0-9]-[1234]\d{6}'
+    elif label == '[PASSPORT_NUMBER]':
+        regex = r'[MmSsOoRrDdTt]\s?\d{8}|[Tt][Cc]\s?\d{7}'
+    elif label == '[ALIEN_REGISTRATION_NUMBER]':
+        regex = r'\d\d[01][0-9][0-3][0-9]-[5678]\d{6}'
+    elif label == '[DRIVER_LICENSE]':
+        regex = r'[12][0-9]-[0-9][0-9]-[0-5]\d{5}-[0-9][0-9]|[12][0-9][0-9][0-9][0-5]\d{5}[0-9][0-9]'
+    elif label == '[ACCOUNT_NUMBER]':
+        regex = r'\d{3}-(?:13|20|19|11|22)-\d{6}|\d{3}-(?:01|02|03|13|07|09|04)|\d{3}-\d{6}-(?:01|02|03|13|07|06|04)-\d{3}|\d{4}(?:01|02|21|24|05|04|25|26|07)-\d{2}-\d{6}|\d{3}-\d{6}-\d{3}(?:05|07|08|02|01|04|94|37|32|60)|(?:101|201|102|202|209|103|208|106|108|113|114|206)\d-\d{4}-\d{4}|\d{3}-(?:01|02|06|08|40)-\d{8}-\d|\d{3}-(?:01|02|12|06|05|17)-\d{6}|\d{4}-(?:01|02|12|06|05|17)-\d{6}|(?:351|352|356|355|354|360|384|394|398|028)-\d{4}-\d{4}-\d{2}|(?:351|352|356|355|354|360|384|394|398|028)-\d{4}-\d{4}-\d{3}|1(?:006|007|002|004|003|005)-\d{3}-\d{6}|\d{3}-\d{6}-(?:18|92)-\d{3}|\d{3}-(?:10|20|30|85)-\d{6}|\d-(?:15|16)-\d{9}|10\d-\d{3}-\d{6}|1[12345][0-9]-\d{3}-\d{6}|(?:160|161)-\d{3}-\d{6,7}|\d{3}-\d{5}-(?:01|11|21|25|31|42|51|71|81|23|05|06|15|26|29|07|27|55|99|03|13|33|41|43|53|63|24)\d-\d{2}|\d-\d{6}-\d(?:25,41,24,18)-\d{2}|(?:505|508|502|501|504|519|520|521|524|525|527|528|937)-\d{2}-\d{6}-\d|9(?:002|003|004|072|090|091|092|093|200|202|205|207|208|209|210|212|005)-\d{4}-\d{4}-\d|(?:100-2|100-5)\d{2}-\d{6}|3(?:333|388|355|310)-\d{2}-\d{7}|7(?:777|979)-\d{2}-\d{7}|9101-\d{2}-\d{7}|(?:100|106|300|150|700)\d-\d{4}-\d{4}|(?:17|19)\d{2}-\d{4}-\d{4}'
+    elif label == '[ARMY_NUMBER]':
+        regex = r'\d\d-(?:1|2|3)\d{4}|\d\d-5\d{5}|\d\d-7(?:0|1|2|3|6|7|)\d{6}|\d\d-9(?:1|2|3|4|6|7|8)\d{5}'
+    elif label == '[IP_ADDRESS]':
+        regex = r'(\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b)'
+    elif label == '[MAC]':
+        regex = r'\b(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}\b'
+    elif label == '[URL]':
+        regex = r'https?:\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+\/?[a-zA-Z0-9@:%_\+.~#?&//=]*|www\.[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+\/?[a-zA-Z0-9@:%_\+.~#?&//=]*|\b(?<!@)(?:[a-zA-Z0-9-]+\.)+(?:com|co\.kr|go\.kr|ac\.kr|re\.kr)\b(?![a-zA-Z])'
+    matched_list = list(dict.fromkeys(re.findall(regex, target_sentense)))
+    for index, value in enumerate(matched_list):
+        if index == 0:
+            target_sentense = target_sentense.replace(value, label)
+        else:
+            target_sentense = target_sentense.replace(value, label[:-1] + '_' + str(index+1) +']')
+    return target_sentense
+
+second_selected_fields = sorted([
     var_name for var_name, value in zip(
         [
-            'name', 'age', 'gender', 'phone_number', 'birthdate', 
-            'address', 'card_number', 'email', 'ip_address', 'password', 
-            'date', 'birth_place', 'permanent_address', 'nationality', 
-            'resident_registration_number', 'foreigner_registration_number', 
-            'driver_license_number', 'passport_number'
+            '[AGE]', '[BANK]', '[BLOOD_TYPE]', '[CITY]', '[DATE]', '[DATE_INTERVAL]', '[DATE_OF_BIRTH]', '[DETAILED_ADDRESS]', '[DISTRICT]', '[DURATION]', '[EMPLOYEE_NUMBER]', '[EMPLOYMENT_TYPE]', '[GENDER]', '[GPA]', '[IQ]', '[JOB]', '[MONEY]', '[NAME]','[NATIONALITY]', '[ORDER_NUMBER]', '[ORGANIZATION]', '[PASSWORD]', '[ROAD_NAME_ADDRESS]', '[SCHOOL_NAME]', '[STATE]', '[STATISTICS]', '[STUDENT_NUMBER]', '[TIME]', '[ZIP_CODE]'
         ],
         [
-            name, age, gender, phone_number, birthdate, 
-            address, card_number, email, ip_address, password, 
-            date, birth_place, permanent_address, nationality, 
-            resident_registration_number, foreigner_registration_number, 
-            driver_license_number, passport_number
+            age, bank, blood_type, city, date, date_interval, date_of_birth, detailed_address, district, duration, employee_number, employment_type, gender, gpa, iq, job, money, nationality, order_number, organization, password, road_name_address, school_name, state, statistics, student_number, time, zip_code
         ]
     ) if value
-]
+])
+
+
 
 with col1:
     if prompt := st.chat_input("Message Gov-STAGE"):
@@ -368,7 +469,7 @@ with col1:
             placeholder.empty()
             col1_1.markdown("<h5 style='text-align: center; color: black;'>User Interface</h5>", unsafe_allow_html=True)
             col1_2.markdown("<h5 style='text-align: center; color: black;'>Internal Processing</h5>", unsafe_allow_html=True)
-            st.session_state.subject = solar.invoke(f"'{prompt}'에 대한 3단어 이하의 간결한 제목을 제안해 주세요.").content.strip('"') # Determine the title of the chat session using the Solar Mini API
+            st.session_state.subject = solar.invoke(f"'{prompt}'에 대한 3단어 이하의 간결한 제목을 제안해 주세요.").content.strip('"')
         with col1_1:
             with st.chat_message("Human"):
                 st.markdown(prompt)
@@ -376,9 +477,10 @@ with col1:
         chat_history = "\n".join([f"{role}: {message}" for role, message in st.session_state.chat_history[-5:]])
         with col1_2: 
             with st.spinner("De-identification in progress...."): 
-                # Detect personal information in the prompt and perform de-identification.
                 if(mode_on):
-                    anonymized_chat_history = lorax_client.generate(anonymization_prompt_template.format(**{"original_sentences": chat_history, "List_of_PII" : selected_fields}), adapter_id='solar anonymization/22', max_new_tokens=1000).generated_text
+                    for label in first_selected_fields:
+                        chat_history = pattern_matching_filter(label, chat_history)
+                    anonymized_chat_history = lorax_client.generate(anonymization_prompt_template.format(**{"original_sentences": chat_history, "List_of_PII" : second_selected_fields}), adapter_id='Solarism/8', max_new_tokens=3000).generated_text
                 else:
                     anonymized_chat_history = chat_history
             matches = re.findall(r'(?:Human:)(.*?)(?=AI:|$)|(?:AI:)(.*?)(?=Human:|$)', anonymized_chat_history, re.DOTALL | re.IGNORECASE)
@@ -392,7 +494,6 @@ with col1:
                 with col1_2:
                     with st.spinner("Generating response...."):
                         if model_type == "solar-1-mini(fine_tuned)":
-                            # Query the Solar Mini, which has been trained on guidelines from a public institution (KDI School).
                             anonymized_response = lorax_client.generate(conversation_prompt_template.format(**{"system_prompt":system_prompt ,"anonymized_chat_history":anonymized_chat_history}), adapter_id='solar kdis/14', max_new_tokens=1000).generated_text
                         elif model_type == "gpt-4o-mini":
                             anonymized_response = gpt4o.invoke(conversation_prompt_template.format(**{"system_prompt":system_prompt ,"anonymized_chat_history":anonymized_chat_history})).content
@@ -403,7 +504,6 @@ with col1:
             with st.spinner("Re-identification in progress...."): 
                 with col1_2:
                     with st.spinner("Re-identification in progress...."):
-                        # Restore personal information from the response of a public LLM.
                         if(mode_on):
                             restored_response = lorax_client.generate(restoration_prompt_template.format(**{"original_conversaion_sentence": chat_history, "anonymized_conversation_history": anonymized_chat_history, "sentence_to_be_restored": anonymized_response}), adapter_id='solar anonymization/22', max_new_tokens=1000).generated_text
                         else:
