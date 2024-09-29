@@ -252,7 +252,7 @@ with col2:
     st.divider()
     st.markdown("##### Role")
     system_prompt = st.text_area("system prompt",value="You are an office assistant, responsible for promptly and accurately answering work-related questions from staff. Respond in a friendly and easy-to-understand language, while maintaining the professionalism and credibility of a public institution.")
-    model_type = st.selectbox("model type",("gpt-4o", "llama3.1-405b", "solar-1-mini(fine_tuned)"),)
+    model_type = st.selectbox("model type",("gpt-4o", "llama3.1-405b", "solar-1-mini(fine_tuned)", "Grok-2", "Claude 3.5 Sonnet"),)
 
 def newChatButton():
     del st.session_state['session_id']
@@ -382,6 +382,24 @@ conversation_prompt_template = """
 <|im_start|>Conversation\n {anonymized_chat_history}<|im_end|>
 <|im_start|>AI:"""
 
+# anonymization_prompt_template = """<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+# You are a personal data anonymization system. Your task is to anonymize personal information in the sentences provided, following the instructions below. However, do not anonymize the personal information of public figures (e.g., celebrities, politicians, athletes).
+
+# Anonymization Rules:
+# 1. Use the following placeholders for anonymization: {List_of_PII}.
+# 2. If a placeholder is not applicable or relevant, retain the original information.
+# 3. Exceptions to anonymization: Do not anonymize information about public figures (politicians, celebrities, athletes) or individuals who have been deceased for more than 5 years.
+# 4. Format: Each exchange in the anonymized conversation should begin with 'Human:' or 'AI:' to indicate the speaker.
+
+# Original sentences: <|eot_id|><|start_header_id|>user<|end_header_id|>
+
+# {original_sentences}
+
+# Anonymized sentences (without additional comments or responses):<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+# """
+
 anonymization_prompt_template = """<|im_start|>system
 You are a personal data anonymization system. Your task is to anonymize personal information in the sentences provided, following the instructions below. However, do not anonymize the personal information of public figures (e.g., celebrities, politicians, athletes).
 
@@ -398,12 +416,37 @@ Original sentences: <|im_end|>
 
 Anonymized sentences (without additional comments or responses):<|im_end|>
 <|im_start|>assistant
+
 """
 
-restoration_prompt_template  = """<|im_start|>system\nYou are a personal data restoration system.
+# restoration_prompt_template  = """<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+# You are a personal data restoration system.
+# Restore the placeholders such as [NAME], [NAME2], [DOB], [DOB2], [ADDRESS], [ADDRESS2] to their original form based on the reference conversation below.
+# The sentence to be restored may or may not be anonymized with placeholders. If it is anonymized, perform the restoration; if not, output the sentence to be restored as it is.
+# Ensure the restored sentence makes sense in context.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+# Conversation history(reference conversation): 
+# {original_conversaion_sentence}
+
+# Anonymized Conversation history(reference conversation):
+# {anonymized_conversation_history}
+
+# Sentence to be restored: 
+# {sentence_to_be_restored}
+
+# Restored sentence(without any additional comments or responses):<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+# """
+
+restoration_prompt_template  = """<|im_start|>system
+
+You are a personal data restoration system.
 Restore the placeholders such as [NAME], [NAME2], [DOB], [DOB2], [ADDRESS], [ADDRESS2] to their original form based on the reference conversation below.
 The sentence to be restored may or may not be anonymized with placeholders. If it is anonymized, perform the restoration; if not, output the sentence to be restored as it is.
-Ensure the restored sentence makes sense in context.<|im_end|>\n<|im_start|>user\n
+Ensure the restored sentence makes sense in context.<|im_end|>
+<|im_start|>user
+
 Conversation history(reference conversation): 
 {original_conversaion_sentence}
 
@@ -413,7 +456,10 @@ Anonymized Conversation history(reference conversation):
 Sentence to be restored: 
 {sentence_to_be_restored}
 
-Restored sentence(without any additional comments or responses):<|im_end|>\n<|im_start|>assistant\n"""
+Restored sentence(without any additional comments or responses):<|im_end|>
+<|im_start|>assistant
+
+"""
 
 
 first_selected_fields = true_list = [var_name for var_name, var_value in [('[ACCOUNT_NUMBER]', account_number), ('[EMAIL]', email), ('[RESIDENT_REGISTRATION_NUMBER]', resident_registration_number), ('[PASSPORT_NUMBER]', passport_number), ('[ALIEN_REGISTRATION_NUMBER]', alien_registration_number), ('[DRIVER_LICENSE]', driver_license), ('[ARMY_NUMBER]', army_number), ('[IP_ADDRESS]', ip_address), ('[MAC]', mac), ('[URL]', url), ('[PHONE_NUMBER]', phone_number)] if var_value]
@@ -425,17 +471,17 @@ def pattern_matching_filter(label, target_sentense):
     elif label == '[EMAIL]':
         regex = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
     elif label == '[RESIDENT_REGISTRATION_NUMBER]':
-        regex = r'\d\d[01][0-9][0-3][0-9]-[1234]\d{6}'
+        regex = r'(?<![1-9])\d\d[01][0-9][0-3][0-9]-[1234]\d{6}(?![1-9])'
     elif label == '[PASSPORT_NUMBER]':
-        regex = r'[MmSsOoRrDdTt]\s?\d{8}|[Tt][Cc]\s?\d{7}'
+        regex = r'[MmSsOoRrDdTt]\s?\d{8}|[Tt][Cc]\s?\d{7}(?![1-9])'
     elif label == '[ALIEN_REGISTRATION_NUMBER]':
-        regex = r'\d\d[01][0-9][0-3][0-9]-[5678]\d{6}'
+        regex = r'(?<![1-9])\d\d[01][0-9][0-3][0-9]-[5678]\d{6}(?![1-9])'
     elif label == '[DRIVER_LICENSE]':
-        regex = r'[12][0-9]-[0-9][0-9]-[0-5]\d{5}-[0-9][0-9]|[12][0-9][0-9][0-9][0-5]\d{5}[0-9][0-9]'
+        regex = r'(?<![1-9])[12][0-9]-[0-9][0-9]-[0-5]\d{5}-[0-9][0-9](?![1-9])|(?<![1-9])[12][0-9][0-9][0-9][0-5]\d{5}[0-9][0-9](?![1-9])'
     elif label == '[ACCOUNT_NUMBER]':
         regex = r'\d{3}-(?:13|20|19|11|22)-\d{6}|\d{3}-(?:01|02|03|13|07|09|04)|\d{3}-\d{6}-(?:01|02|03|13|07|06|04)-\d{3}|\d{4}(?:01|02|21|24|05|04|25|26|07)-\d{2}-\d{6}|\d{3}-\d{6}-\d{3}(?:05|07|08|02|01|04|94|37|32|60)|(?:101|201|102|202|209|103|208|106|108|113|114|206)\d-\d{4}-\d{4}|\d{3}-(?:01|02|06|08|40)-\d{8}-\d|\d{3}-(?:01|02|12|06|05|17)-\d{6}|\d{4}-(?:01|02|12|06|05|17)-\d{6}|(?:351|352|356|355|354|360|384|394|398|028)-\d{4}-\d{4}-\d{2}|(?:351|352|356|355|354|360|384|394|398|028)-\d{4}-\d{4}-\d{3}|1(?:006|007|002|004|003|005)-\d{3}-\d{6}|\d{3}-\d{6}-(?:18|92)-\d{3}|\d{3}-(?:10|20|30|85)-\d{6}|\d-(?:15|16)-\d{9}|10\d-\d{3}-\d{6}|1[12345][0-9]-\d{3}-\d{6}|(?:160|161)-\d{3}-\d{6,7}|\d{3}-\d{5}-(?:01|11|21|25|31|42|51|71|81|23|05|06|15|26|29|07|27|55|99|03|13|33|41|43|53|63|24)\d-\d{2}|\d-\d{6}-\d(?:25,41,24,18)-\d{2}|(?:505|508|502|501|504|519|520|521|524|525|527|528|937)-\d{2}-\d{6}-\d|9(?:002|003|004|072|090|091|092|093|200|202|205|207|208|209|210|212|005)-\d{4}-\d{4}-\d|(?:100-2|100-5)\d{2}-\d{6}|3(?:333|388|355|310)-\d{2}-\d{7}|7(?:777|979)-\d{2}-\d{7}|9101-\d{2}-\d{7}|(?:100|106|300|150|700)\d-\d{4}-\d{4}|(?:17|19)\d{2}-\d{4}-\d{4}'
     elif label == '[ARMY_NUMBER]':
-        regex = r'\d\d-(?:1|2|3)\d{4}|\d\d-5\d{5}|\d\d-7(?:0|1|2|3|6|7|)\d{6}|\d\d-9(?:1|2|3|4|6|7|8)\d{5}'
+        regex = r'(?<![1-9])\d\d-(?:1|2|3)\d{4}(?![1-9])|(?<![1-9])\d\d-5\d{5}(?![1-9])|(?<![1-9])\d\d-7(?:0|1|2|3|6|7|)\d{6}(?![1-9])|(?<![1-9])\d\d-9(?:1|2|3|4|6|7|8)\d{5}(?![1-9])'
     elif label == '[IP_ADDRESS]':
         regex = r'(\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b)'
     elif label == '[MAC]':
@@ -456,15 +502,47 @@ second_selected_fields = sorted([
             '[AGE]', '[BANK]', '[BLOOD_TYPE]', '[CITY]', '[DATE]', '[DATE_INTERVAL]', '[DATE_OF_BIRTH]', '[DETAILED_ADDRESS]', '[DISTRICT]', '[DURATION]', '[EMPLOYEE_NUMBER]', '[EMPLOYMENT_TYPE]', '[GENDER]', '[GPA]', '[IQ]', '[JOB]', '[MONEY]', '[NAME]','[NATIONALITY]', '[ORDER_NUMBER]', '[ORGANIZATION]', '[PASSWORD]', '[ROAD_NAME_ADDRESS]', '[SCHOOL_NAME]', '[STATE]', '[STATISTICS]', '[STUDENT_NUMBER]', '[TIME]', '[ZIP_CODE]'
         ],
         [
-            age, bank, blood_type, city, date, date_interval, date_of_birth, detailed_address, district, duration, employee_number, employment_type, gender, gpa, iq, job, money, nationality, order_number, organization, password, road_name_address, school_name, state, statistics, student_number, time, zip_code
+            age, bank, blood_type, city, date, date_interval, date_of_birth, detailed_address, district, duration, employee_number, employment_type, gender, gpa, iq, job, money, name, nationality, order_number, organization, password, road_name_address, school_name, state, statistics, student_number, time, zip_code
         ]
     ) if value
 ])
 
+ai_act_template = '''
+너는 LLM을 윤리에 맞게 안전하게 사용하는지 감시하는 챗봇이야.
+아래의 비윤리적인 시스템 예시에 해당하는 경우 1을 출력하고, 그렇지 않은 경우 0을 출력해.
 
+비윤적인 시스템 예시: 공공 당국이 또는 공공 당국을 대신하여 자연인의 공공지원서비스를 지원하는 시스템(예: 긴급복지제도, 긴급사회복지제도, 의료복지대상자선정 등)
+
+출력 예시1:
+사용자 입력: 안녕, 내 이름은 임을영이야.
+출력: 0
+
+출력 예시2:
+사용자 입력: 민원인은 30살이고, 소득이 201만원이야. 가족은 없고, 재산은 2천만원이 있는데, 부채가 4천만원이 있어. 서울에 거주하고 있는데, 4개월전에 교정시설에서 출소한 이력이 있어. 긴급사회복지를 신청했는데 대상자가 맞는지 확인해줘.
+출력: 1
+
+출력 예시3: 
+사용자 입력: 아래의 공문을 요약해줘. 
+공무로 인한 공가를 신청하오니 결재하여 주시기 바랍니다.
+이름: 임을영
+소속: 전산1팀
+날짜: 4월 2일~10일
+출력: 0
+
+출력 예시4:
+사용자 입력: 아래 내용을 이메일 형태로 변경해줘.
+서울시에 공공주택 20만호 공급예정.
+인천광역시 oo구 9월 중 재개발 승인 예정
+출력: 0
+
+! 아래의 사용자 입력을 판단하시오.
+사용자 입력: {PROMPT}
+출력: 
+'''
 
 with col1:
     if prompt := st.chat_input("Message Gov-STAGE"):
+        #ai_act_status = solar.invoke(ai_act_template.format(**{"PROMPT" : prompt})).content.strip('"')
         if len(st.session_state.chat_history) == 0:
             placeholder.empty()
             col1_1.markdown("<h5 style='text-align: center; color: black;'>User Interface</h5>", unsafe_allow_html=True)
@@ -475,19 +553,20 @@ with col1:
                 st.markdown(prompt)
         st.session_state.chat_history.append(("Human", prompt))
         chat_history = "\n".join([f"{role}: {message}" for role, message in st.session_state.chat_history[-5:]])
+        chat_history2 = chat_history
         with col1_2: 
             with st.spinner("De-identification in progress...."): 
                 if(mode_on):
                     for label in first_selected_fields:
                         chat_history = pattern_matching_filter(label, chat_history)
-                    anonymized_chat_history = lorax_client.generate(anonymization_prompt_template.format(**{"original_sentences": chat_history, "List_of_PII" : second_selected_fields}), adapter_id='Solarism/8', max_new_tokens=3000).generated_text
+                    anonymized_chat_history = lorax_client.generate(anonymization_prompt_template.format(**{"original_sentences": chat_history, "List_of_PII" : second_selected_fields}), adapter_id='solarism_v1/5', max_new_tokens=1000).generated_text
                 else:
                     anonymized_chat_history = chat_history
-            matches = re.findall(r'(?:Human:)(.*?)(?=AI:|$)|(?:AI:)(.*?)(?=Human:|$)', anonymized_chat_history, re.DOTALL | re.IGNORECASE)
+            matches = re.findall(r'(?:Human: )(.*?)(?=AI: |$)|(?:AI: )(.*?)(?=Human: |$)', anonymized_chat_history, re.DOTALL)
             filtered_matches = [match[0] if match[0] else match[1] for match in matches if match[0] or match[1]]
             with st.chat_message("Human"):
-                st.markdown(filtered_matches[-1])
-                st.session_state.anonymized_chat_history.append(("Human", filtered_matches[-1]))
+                st.markdown(filtered_matches[len(st.session_state.anonymized_chat_history)])
+                st.session_state.anonymized_chat_history.append(("Human", filtered_matches[len(st.session_state.anonymized_chat_history)]))
         
         with col1_1:
             with st.spinner("Generating response...."): 
@@ -495,7 +574,7 @@ with col1:
                     with st.spinner("Generating response...."):
                         if model_type == "solar-1-mini(fine_tuned)":
                             anonymized_response = lorax_client.generate(conversation_prompt_template.format(**{"system_prompt":system_prompt ,"anonymized_chat_history":anonymized_chat_history}), adapter_id='solar kdis/14', max_new_tokens=1000).generated_text
-                        elif model_type == "gpt-4o-mini":
+                        elif model_type == "gpt-4o":
                             anonymized_response = gpt4o.invoke(conversation_prompt_template.format(**{"system_prompt":system_prompt ,"anonymized_chat_history":anonymized_chat_history})).content
                         else:
                             anonymized_response = llama3.invoke(conversation_prompt_template.format(**{"system_prompt":system_prompt ,"anonymized_chat_history":anonymized_chat_history})).content
@@ -505,7 +584,9 @@ with col1:
                 with col1_2:
                     with st.spinner("Re-identification in progress...."):
                         if(mode_on):
-                            restored_response = lorax_client.generate(restoration_prompt_template.format(**{"original_conversaion_sentence": chat_history, "anonymized_conversation_history": anonymized_chat_history, "sentence_to_be_restored": anonymized_response}), adapter_id='solar anonymization/22', max_new_tokens=1000).generated_text
+                            restored_response = lorax_client.generate(restoration_prompt_template.format(**{"original_conversaion_sentence": chat_history2, "anonymized_conversation_history": anonymized_chat_history, "sentence_to_be_restored": anonymized_response}), adapter_id='solarism_v1/5', max_new_tokens=1000).generated_text
+                            #if(ai_act_status == "1"):
+                            #    restored_response = "**⛔Alert** \n\n**필수 민간 및 공공 서비스 용도로 AI를 활용하는 것은 금지입니다.**\n\n*근거조항: EU AI Act 제6조 제2항, 부속서3 5호 (a)*\n\n" + restored_response
                         else:
                             restored_response = anonymized_response
         with col1_1:
